@@ -11,17 +11,25 @@ class UserController < ApplicationController
       user = User.new(params[:user])
       if user.save 
         session[:user_id]=user.id
-        redirect 'login'
+        redirect '/login'
       else
-        
         #add errors
         erb:'users/new'
       end 
     end
+    
+    get '/login' do 
+      erb :'users/login'
+    end 
 
-
-    get '/login' do
-      "login"
+    post '/login' do
+      user = User.find_by_username(params[:user][:username])
+      if user && user.authenticate(params[:user][:password])
+        session[:user_id] = user.id
+        redirect '/user/dashboard'
+      else
+        redirect '/'
+      end 
     end
 
 
@@ -32,8 +40,8 @@ class UserController < ApplicationController
       redirect '/'
     end
 
-    get '/users' do 
-      @users = User.all
+    get '/user/dashboard' do 
+      "here is dashboard"
       erb :'users/index'
     end 
     

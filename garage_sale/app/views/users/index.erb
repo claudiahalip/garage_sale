@@ -1,3 +1,10 @@
-<h1>INDEX</h1>
+<h1><%=current_user.username %>'s Profile</h1>
 
-<h1>Here you gonna see all the users</h1>
+<%if logged_in?%>
+  <h2>You are logged in as: <%=current_user.username %></h2>
+  <a href = "/logout"><b>Logout</b></a>
+<%end%>
+
+
+<h1>Here you gonna see your posts</h1>
+
