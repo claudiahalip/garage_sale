@@ -9,34 +9,35 @@ class ItemController < ApplicationController
       erb :'items/new'
     end 
 
-    post '/user/items' do  #create 1 itme
+    post '/items' do  #create 1 itme
       @item = Item.create(params)
-      redirect '/user/dashboard'
+      redirect "/user/#{@user.id}"
     end 
 
     get '/items/:id' do  #show 1 item
-        # @item = Item.find_by_id(params[:id])
+        @item = Item.find_by(params[:id])
         erb :'items/show'
     end 
 
    
 
-    get '/itmes/:id/edit' do #edit 1 item 
-      # @item = Item.find_by_id(params[:id])
+    get '/items/:id/edit' do
+      "Hello World" #edit 1 item 
+      @item = Item.find_by(params[:id])
       erb :'items/edit'
     end 
 
     
     patch '/items/:id' do #update 1 item
-      # item = Item.find(params[:id])
-      # item.update(name: params[:name] )
-      # redirect '/items/:id'
+      item = Item.find_by(params[:id])
+      item.update(params)
+      redirect "/items/#{item.id}"
     end 
 
     delete '/items/:id' do #delete one item 
-      # item = Item.find_by(params[:id])
-      # item.destroy
-      # redirect '/items'
+      item = Item.find_by(params[:id])
+      item.destroy
+      redirect '/items'
     end 
 
     

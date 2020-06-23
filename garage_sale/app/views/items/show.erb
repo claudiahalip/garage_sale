@@ -1,3 +1,19 @@
 <h1>SHOW</h1>
 <li><a href = "/logout"><b>Logout</b></a></li>
 <h1>Here you gonna see 1 item</h1>
+
+<h2> <%=@item.name %></h2>
+<h3>size:<%=@item.size%></h3>
+<h3>color:<%=@item.color%></h3>
+<h3>condition:<%=@item.condition%></h3>
+<h3>description:<%=@item.description%></h3>
+<h3>fun_memories:<%=@item.fun_memories%></h3>
+
+<h4><a href="/items/<%=@item.id%>/edit">Edit this item</a></h4>
+
+<form action="/items/<%=@item.id%>" method="POST" >
+   <input type="hidden"  name="_method" value="delete">
+
+   <input type="submit" value="delete">
+</form>
+<h3></h3>

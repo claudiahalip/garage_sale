@@ -1,3 +1,13 @@
 <h1>SHOW</h1>
-<li><a href = "/logout"><b>Logout</b></a></li>
-<h1>Here you gonna see 1 users</h1>
+
+
+<%if logged_in?%>
+  <h1><%=current_user.username %>'s Profile</h1>
+  <a href = "/logout"><b>Logout</b></a>
+<%end%>
+
+
+<h1>Here you gonna see all your items.</h1>
+
+<h3><a href= "/items/new">add new item</a></h3>
+<h4><a href="/items">see all items</a></h4>
