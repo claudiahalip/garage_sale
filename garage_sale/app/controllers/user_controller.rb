@@ -2,17 +2,43 @@ require './config/environment'
 
 class UserController < ApplicationController
 
+    get '/signup' do
+      "sign up"
+      erb :'users/new'
+    end
+
+    post '/signup' do
+      user = User.new(params[:user])
+      if user.save 
+        session[:user_id]=user.id
+        redirect 'login'
+      else
+        
+        #add errors
+        erb:'users/new'
+      end 
+    end
+
+
+    get '/login' do
+      "login"
+    end
+
+
+
+    get '/logout' do
+      "logout"
+      session.clear
+      redirect '/'
+    end
 
     get '/users' do 
       @users = User.all
       erb :'users/index'
     end 
     
-    get '/users/new' do  #add a new user
-      erb :'users/new'
-    end 
-
-    get 'users/:id' do  #show 1 user
+    
+   get 'users/:id' do  #show 1 user
       @user = User.find(params[:id])
       erb :'users/show'
     end 
@@ -35,4 +61,4 @@ class UserController < ApplicationController
     end 
 
 
-end 
+ end 

@@ -1,10 +1,12 @@
-<h1>NEW</h1>
-<h1>Here you gonna see a NEW user</h1>
+<h1>Sign Up</h1>
 
-<form method="POST"  atribute='/users'>
-   <h3>Name:<input type="text" name = "name"></h3>
 
-   <h3>Email:<input type="email" name = "email"></h3>
-   <input type="submit">
+<form method="POST"  atribute='/signup'>
+   <h3>Name:<input type="text" name = "user[username]"></h3>
+
+   <h3>Email:<input type="email" name = "user[email]"></h3>
+   
+   <h3>Password:<input type="password" name = "user[password]"></h3>
+   <input type="submit" value = "sign up">
   
 </form>
