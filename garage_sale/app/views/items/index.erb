@@ -1,4 +1,13 @@
-<h1>INDEX</h1>
+<h1>ALL ITEMS FOR SELL</h1>
 <br>
 
-<%end %>
+<%@items.each do |item|%>
+  <h3><%=item.id%>.<%=item.name%>  </h3>
+  <h3>size:<%=item.size%></h3>
+  <h3>brand:<%=item.brand%></h3>
+  <h3>color:<%=item.color%></h3>
+  <h3>condition:<%=item.condition%></h3>
+  <h3>description:<%=item.description%></h3>
+  <h3>fun_memories:<%=item.fun_memories%></h3>
+<%end%>
+
