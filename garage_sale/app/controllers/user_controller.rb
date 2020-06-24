@@ -14,6 +14,8 @@ class UserController < ApplicationController
         redirect '/login'
       else
         #add errors
+        @errors = user.errors.full_messages.join(", ")
+      
         erb:'users/new'
       end 
     end
@@ -24,9 +26,10 @@ class UserController < ApplicationController
 
     post '/login' do
       user = User.find_by_username(params[:user][:username])
+   
       if user && user.authenticate(params[:user][:password])
         session[:user_id] = user.id
-        redirect "/user/#{user.id}"
+        redirect "/users/#{user.id}"
       else
         redirect '/'
       end 
@@ -39,29 +42,31 @@ class UserController < ApplicationController
       redirect '/'
     end
     
-
+    get '/users' do
+      @users = User.all
+      erb :'users/index'
+    end 
     
-    get 'users/:id' do  #show 1 user
-      "hello "
-      @user = User.find(params[:id])
+    get '/users/:id' do  #show 1 user
+      @user = User.find_by_id(params[:id])
       erb :'users/show'
     end 
 
-
     get '/users/:id/edit' do  #edit and show the updated  user
-       
-    end 
-
-    post '/users' do  #create 1 user
-    
+      @user = User.find(params[:id])
+      erb :'users/edit'
     end 
 
     patch '/users/:id' do  #update 1 user
-  
+      user = User.find(params[:id])
+      user.update(username: params[:user][:username])
+      redirect "/users/#{user.id}"
     end 
  
     delete '/users/:id' do  #delete 1 user
-    
+      user = User.find(params[:id])
+      user.destroy
+      redirect '/'
     end 
 
 

@@ -1,10 +1,14 @@
+<%if logged_in?%>
+  <h1><%=current_user.username %>'s Profile</h1>
+  <a href = "/logout"><b>Logout</b></a>
+<%end%>
 <h1>ALL ITEMS FOR SELL</h1>
 <br>
 
 <%@items.each do |item|%>
   <h3><%=item.id%>.<%=item.name%>  </h3>
   
-  <h3>brand:<%=item.brand%></h3>
+  
   
   <h3><a href="/items/<%=item.id%>">see this item</a>
 <%end%>

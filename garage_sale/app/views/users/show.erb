@@ -6,8 +6,22 @@
   <a href = "/logout"><b>Logout</b></a>
 <%end%>
 
+<h4><a href= "/users/<%=@user.id%>/edit">Edit profile</a></h4>
+
+<form action="/users/<%=@user.id%>" method="POST" >
+   <input type="hidden" value="DELETE"  name="_method">
+
+   <input type="submit" value="delete">
+</form>
+
 
 <h1>Here you gonna see all your items.</h1>
 
-<h3><a href= "/items/new">add new item</a></h3>
+<h4><a href="/users">see all users</a></h4>
 <h4><a href="/items">see all items</a></h4>
+<h4><a href="/items/new">add an item</a><h4>
+
+
+
+
+

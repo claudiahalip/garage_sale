@@ -7,8 +7,8 @@ class CreateItems < ActiveRecord::Migration
       t.string :color 
       t.string :condition
       t.text :description
-      t.text :fun_memories
-      t.text :image_url
+      t.float :price
+      t.integer :user_id
     end 
   end
 end

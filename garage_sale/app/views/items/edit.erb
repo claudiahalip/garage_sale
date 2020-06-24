@@ -2,14 +2,14 @@
 
 
 <form action="/items/<%=@item.id%>" method="POST" >
-   <input type="hidden"  name="_method" value="patch">
-   <h3>Item name: <input type="text" name="name"></h3>
-   <h3>Item size: <input type="number" name="size"></h3>
-   <h3>Item brand: <input type="text" name="brand"></h3>
-   <h3>Item color: <input type="text" name="color"></h3>
-   <h3>Item condition: <input type="text" name="condition"></h3>
-   <h3>Item description: <input type="text" name="description"></h3>
-   <h3>Item fun memories: <input type="text" name="fun_memories"></h3>
-   <h3>Upload image: <input type="text" name="image_url"></h3>
-   <input type="submit">
+   <input type="hidden" name="_method" value="PATCH">
+   <h3>Item name: <input type="text" name="item[name]"></h3>
+   <h3>Item size: <input type="text" name="item[size]"></h3>
+   <h3>Item brand: <input type="text" name="item[brand]"></h3>
+   <h3>Item color: <input type="text" name="item[color]"></h3>
+   <h3>Item condition: <input type="text" name="item[condition]"></h3>
+   <h3>Item description: <input type="text" name="item[description]"></h3>
+   <h3>Item price: <input type="text" name="item[price]"></h3>
+   <input type="submit" >
+   
 </form>

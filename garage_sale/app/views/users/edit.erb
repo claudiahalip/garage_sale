@@ -1,1 +1,12 @@
 <h1>EDIT</h1>
+<%if logged_in?%>
+  <h1><%=current_user.username %>'s Profile</h1>
+  <a href = "/logout"><b>Logout</b></a>
+<%end%>
+
+<form action ="/users/<%=@user.id%>" method="POST" >
+   <input type="hidden" name="_method" value="PATCH">
+   <h3>Username:<input type="text" name = "user[username]"></h3>
+   <input type="submit">
+  
+</form>

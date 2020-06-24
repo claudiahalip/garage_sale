@@ -8,6 +8,7 @@ end
 require_relative 'app/controllers/user_controller'
 require_relative 'app/controllers/item_controller'
 
+use Rack::MethodOverride
 use ItemController
 use UserController
 

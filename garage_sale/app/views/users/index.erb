@@ -1,4 +1,15 @@
 
 
-<h1>INDEX</h1>
+<h1>INDEX USERS</h1>
 
+<%if logged_in?%>
+  <h1><%=current_user.username %>'s Profile</h1>
+  <a href = "/logout"><b>Logout</b></a>
+<%end%>
+
+<h3>ALL USERS</h3>
+
+<%@users.each do |user|%>
+  <h2><%=user.username%></h2>
+  <h4><a href="/users/<%=user.id%>">see this user</a></h4>
+<%end%>
