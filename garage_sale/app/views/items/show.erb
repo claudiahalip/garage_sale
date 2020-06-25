@@ -1,10 +1,13 @@
-<h1>SHOW</h1>
+<h6>SHOW</h6>
+<br>
 <%if logged_in?%>
-  <h1><%=current_user.username %>'s Profile</h1>
-  <a href = "/logout"><b>Logout</b></a>
+  <h2>Signed in as: <%=current_user.username %> </h2>
+  <h5><a href = "/logout"><b>Logout</b></a></h5>
+  <%else%>
+  <h5><a href="/login">Login</a></h5>
 <%end%>
 
-<h1>Item details</h1>
+<h2>Item details</h2>
 
 <h2> <%=@item.name %></h2>
 <h3>size:<%=@item.size%></h3>

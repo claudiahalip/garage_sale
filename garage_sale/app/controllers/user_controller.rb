@@ -9,9 +9,10 @@ class UserController < ApplicationController
 
     post '/signup' do
       user = User.new(params[:user])
+    
       if user.save 
         session[:user_id]=user.id
-        redirect '/login'
+        redirect "/users/#{user.id}"
       else
         #add errors
         @errors = user.errors.full_messages.join(", ")
@@ -53,8 +54,19 @@ class UserController < ApplicationController
     end 
 
     get '/users/:id/edit' do  #edit and show the updated  user
-      @user = User.find(params[:id])
-      erb :'users/edit'
+      if !logged_in?
+        redirect "/login"
+      else
+        if @user = current_user
+          
+          erb :'users/edit' 
+        else
+          
+          redirect "/users"
+        end 
+      end
+      # @user = User.find(params[:id])
+      # erb :'users/edit'
     end 
 
     patch '/users/:id' do  #update 1 user

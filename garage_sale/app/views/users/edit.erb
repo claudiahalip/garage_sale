@@ -1,4 +1,4 @@
-<h1>EDIT</h1>
+<h2>EDIT</h2>
 <%if logged_in?%>
   <h1><%=current_user.username %>'s Profile</h1>
   <a href = "/logout"><b>Logout</b></a>
@@ -6,7 +6,8 @@
 
 <form action ="/users/<%=@user.id%>" method="POST" >
    <input type="hidden" name="_method" value="PATCH">
-   <h3>Username:<input type="text" name = "user[username]"></h3>
+   <h3>Username:<input type="text" name = "user[username]" value= "<%=@user.username%>"></h3>
+   <h3>Email:<input type="text" name = "user[email]" value= "<%=@user.email%>"></h3>
    <input type="submit">
   
 </form>

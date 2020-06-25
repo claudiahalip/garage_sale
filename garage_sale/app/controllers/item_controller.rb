@@ -9,8 +9,11 @@ class ItemController < ApplicationController
       erb :'items/new'
     end 
 
-    post '/items' do  #create 1 itme
-      @item = Item.create(params[:item])
+    post '/items' do  #create 1 
+    
+      #user = User.find_by(id: session[:user_id])
+      @item = Item.create(name: params[:item][:name],size: params[:item][:size], brand: params[:item][:brand], color: params[:item][:color], condition: params[:item][:condition], description: params[:item][:descriprion], price: params[:item][:price], user_id: session[:user_id])
+      binding.pry
       redirect "/items/#{@item.id}"
     end 
 
@@ -22,8 +25,17 @@ class ItemController < ApplicationController
    
 
     get '/items/:id/edit' do    #edit 1 item 
-      @item = Item.find_by_id(params[:id])
-      erb :'items/edit'
+      if !logged_in?
+        redirect "/login"
+      else
+        if @item = current_user.items.find_by(id: params[:id])
+          erb :'item/edit'
+        else
+          redirect '/items'
+        end
+      end
+      # @item = Item.find_by_id(params[:id])
+      # erb :'items/edit'
     end 
 
     
