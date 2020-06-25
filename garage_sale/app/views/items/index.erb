@@ -1,18 +1,16 @@
 <h6>index_view</h6>
 
-<%if logged_in?%>
-  <h2>Sign in as :<%=current_user.username %>'s </h2>
-  <h5><a href = "/logout"><b>Logout</b></a></h5>
-  <%else%>
-  <h5><a href="/login">Login</a></h5>
-<%end%>
+
 
 <h2>ALL ITEMS FOR SALE</h2>
 <br>
 
 <%@items.each do |item|%>
-  <h3><%=item.id%>.<%=item.name%>  </h3>
+  <h3><%=item.name%></h3>
   <h3><a href="/items/<%=item.id%>">see this item</a>
 <%end%>
-<h4><a href="/login">Login</h4>
-<h4><a href="/signup">Sign up</h4>
+<br>
+<br>
+
+<h4><a href = "/users/<%=current_user.id%>">your profile page</h4>
+

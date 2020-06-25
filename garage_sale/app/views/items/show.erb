@@ -1,11 +1,6 @@
 <h6>SHOW</h6>
 <br>
-<%if logged_in?%>
-  <h2>Signed in as: <%=current_user.username %> </h2>
-  <h5><a href = "/logout"><b>Logout</b></a></h5>
-  <%else%>
-  <h5><a href="/login">Login</a></h5>
-<%end%>
+
 
 <h2>Item details</h2>
 
@@ -17,11 +12,13 @@
 <h3>description:<%=@item.description%></h3>
 <h3>price:<%=@item.price%></h3>
 
-<h4><a href="/items/<%=@item.id%>/edit">Edit this item</a></h4>
+<%if @item.user == current_user %>
+   <h4><a href="/items/<%=@item.id%>/edit">Edit this item</a></h4>
+   <form action="/items/<%=@item.id%>" method="POST" >
+      <input type="hidden" value="DELETE"  name="_method">
+      <input type="submit" value="delete">
+   </form>
+<%end%>
 
-<form action="/items/<%=@item.id%>" method="POST" >
-   <input type="hidden" value="DELETE"  name="_method">
-
-   <input type="submit" value="delete">
-</form>
-<h4><a href = "/items"><b>back to ALL items</a></h4>
+<h4><a href = "/users/<%=current_user.id%>">back to your profile page</a></h4>
+<h4><a href = "/items">back to ALL items</a></h4>

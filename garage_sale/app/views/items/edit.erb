@@ -3,13 +3,13 @@
 
 <form action="/items/<%=@item.id%>" method="POST" >
    <input type="hidden" name="_method" value="PATCH">
-   <h3>Item name: <input type="text" name="item[name]" value="<%=@item.name>"></h3>
-   <h3>Item size: <input type="text" name="item[size]" value="<%=@item.size>"></h3>
-   <h3>Item brand: <input type="text" name="item[brand]" value="<%=@item.brand>"></h3>
-   <h3>Item color: <input type="text" name="item[color]" value="<%=@item.color>"></h3>
-   <h3>Item condition: <input type="text" name="item[condition]" value="<%=@item.condition>"></h3>
-   <h3>Item description: <input type="text" name="item[description]" value="<%=@item.description>"></h3>
-   <h3>Item price: <input type="text" name="item[price]" value="<%=@item.price>"></h3>
+   <h3>Item name: <input type="text" name="item[name]" value="<%=@item.name%>"></h3>
+   <h3>Item size: <input type="text" name="item[size]" value="<%=@item.size%>"></h3>
+   <h3>Item brand: <input type="text" name="item[brand]" value="<%=@item.brand%>"></h3>
+   <h3>Item color: <input type="text" name="item[color]" value="<%=@item.color%>"></h3>
+   <h3>Item condition: <input type="text" name="item[condition]" value="<%=@item.condition%>"></h3>
+   <h3>Item description: <input type="text" name="item[description]" value="<%=@item.description%>"></h3>
+   <h3>Item price: <input type="text" name="item[price]" value="<%=@item.price%>"></h3>
    <input type="submit" >
    
 </form>

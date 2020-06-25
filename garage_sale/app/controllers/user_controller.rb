@@ -53,32 +53,28 @@ class UserController < ApplicationController
       erb :'users/show'
     end 
 
-    get '/users/:id/edit' do  #edit and show the updated  user
+    get '/users/:id/edit' do 
       if !logged_in?
         redirect "/login"
-      else
-        if @user = current_user
-          
-          erb :'users/edit' 
-        else
-          
-          redirect "/users"
-        end 
       end
-      # @user = User.find(params[:id])
-      # erb :'users/edit'
+      @user = current_user
+      erb :'users/edit' 
     end 
 
     patch '/users/:id' do  #update 1 user
       user = User.find(params[:id])
-      user.update(username: params[:user][:username])
-      redirect "/users/#{user.id}"
+      if !logged_in?
+        user.update(username: params[:user][:username])
+        redirect "/users/#{user.id}"
+      end
     end 
  
     delete '/users/:id' do  #delete 1 user
       user = User.find(params[:id])
-      user.destroy
-      redirect '/'
+      if !logged_in?
+        user.destroy
+        redirect '/'
+      end 
     end 
 
 

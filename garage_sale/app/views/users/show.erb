@@ -1,14 +1,8 @@
 <h6>SHOW</h6>
 
 
-<%if logged_in?%>
-  <h2>Signed in as: <%=current_user.username %> </h2>
-  <h5><a href = "/logout"><b>Logout</b></a></h5>
-  <%else%>
-  <h5><a href="/login">Login</a></h5>
-<%end%>
 
-<h4><a href= "/users/<%=@user.id%>/edit">Edit profile</a></h4>
+<h6><a href= "/users/<%=@user.id%>/edit">Edit profile</a></h6>
 
 <form action="/users/<%=@user.id%>" method="POST" >
    <input type="hidden" value="DELETE"  name="_method">
@@ -17,10 +11,16 @@
 
 
 
-<h1>Here you're going to see all your items.</h1>
+<h2> All your items </h2>
+<h4><%=@user.username%>'profile</h4>
 <%@user.items.each do |user_item|%>
-    <%=user_item.name%>
+    <h3><%=user_item.name%></h3><h6><a href= "/items/<%=user_item.id%>">item details</a></h6>
+    
 <%end%>
+
+<br>
+<br>
+<br>
 
 
 

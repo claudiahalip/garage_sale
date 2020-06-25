@@ -1,11 +1,6 @@
 <header>
 <h6>index_user</h6>
-<%if logged_in?%>
-  <h2>Signed in as: <%=current_user.username %> </h2>
-  <h5><a href = "/logout"><b>Logout</b></a></h5>
-  <%else%>
-  <h5><a href="/login">Login</a></h5>
-<%end%>
+
 <img src="images/THEH0349.jpg" class="img-responsive main-image">
 </header>
 
@@ -16,7 +11,7 @@
 <h2>ALL USERS</h2>
 
 <%@users.each do |user|%>
-  <h3><%=user.username%></h3> <h4><a href="/user/<%=user.id%>">see this user profile</a></h4>
+  <h3><a href="/users/<%=user.id%>"><%=user.username%></a></h3>
 <%end%>
 
 
