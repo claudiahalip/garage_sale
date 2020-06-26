@@ -10,12 +10,15 @@ class ItemController < ApplicationController
     end 
 
     post '/items' do 
-      if params[:name].blank?
-        redirect "/items/new"
-      else
-        @item = Item.create(name: params[:item][:name],size: params[:item][:size], brand: params[:item][:brand], color: params[:item][:color], condition: params[:item][:condition], description: params[:item][:descriprion], price: params[:item][:price], user_id: session[:user_id])
-        redirect "/items/#{@item.id}"
-      end 
+      # if params[:name].blank?
+      #   redirect "/items/new"
+      # end 
+      @item = Item.create(name: params[:item][:name],size: params[:item][:size], brand: params[:item][:brand], color: params[:item][:color], condition: params[:item][:condition], description: params[:item][:descriprion], price: params[:item][:price], user_id: session[:user_id])
+        # @item = current_user.items.build(params[:item])
+        # @item.save
+      redirect "/items/#{@item.id}"
+      
+       
     end 
 
     get '/items/:id' do 
@@ -35,9 +38,9 @@ class ItemController < ApplicationController
 
     
     patch '/items/:id' do 
-      @item = Item.find(params[:id])
-      if logged_in? && @item.user == current_user
-        @item.update(params[:item])
+      item = Item.find(params[:id])
+      if logged_in? && item.user == current_user
+        item.update(params[:item])
         redirect "/items/#{current_user.id}"
       else
         #Flash[:message] = "You're have access to edit this item"
@@ -46,12 +49,12 @@ class ItemController < ApplicationController
     end 
 
     delete '/items/:id' do #delete one item 
-      @item = Item.find(params[:id])
-      if logged_in? && @item.user == current_user
-        @item.destroy
+      item = Item.find(params[:id])
+      if logged_in? && item.user == current_user
+        item.destroy
         redirect '/items'
       end 
-       #add error , maby flash [:message]
+       #add error , maybe flash [:message]
       
       
     end 

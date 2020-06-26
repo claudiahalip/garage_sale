@@ -12,8 +12,9 @@
 <h3>description:<%=@item.description%></h3>
 <h3>price:<%=@item.price%></h3>
 
+
+
 <%if @item.user == current_user %>
-   <h4><a href="/items/<%=@item.id%>/edit">Edit this item</a></h4>
    <form action="/items/<%=@item.id%>" method="POST" >
       <input type="hidden" value="DELETE"  name="_method">
       <input type="submit" value="delete">

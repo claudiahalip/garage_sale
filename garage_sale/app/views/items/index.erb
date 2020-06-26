@@ -1,13 +1,10 @@
-<h6>index_view</h6>
-
-
 
 <h2>ALL ITEMS FOR SALE</h2>
 <br>
 
 <%@items.each do |item|%>
-  <h3><%=item.name%></h3>
-  <h3><a href="/items/<%=item.id%>">see this item</a>
+  <h3><a href= "/items/<%=item.id%>"><%=item.name%></a></h3>
+  
 <%end%>
 <br>
 <br>

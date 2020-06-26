@@ -1,13 +1,12 @@
-<h6>SHOW</h6>
 
 
 
-<h6><a href= "/users/<%=@user.id%>/edit">Edit profile</a></h6>
-
-<form action="/users/<%=@user.id%>" method="POST" >
-   <input type="hidden" value="DELETE"  name="_method">
-   <input type="submit" value="delete">
-</form>
+<%if @user == current_user%>
+    <form action="/users/<%=@user.id%>" method="POST" >
+    <input type="hidden" value="DELETE"  name="_method">
+    <input type="submit" value="delete">
+    </form>
+<%end%>
 
 
 
