@@ -5,9 +5,11 @@
 <h2>ALL USERS</h2>
 
 <%@users.each do |user|%>
-  <h3><a href="/users/<%=user.id%>"><%=user.username%></a></h3>
+  <div class = "items_users"> 
+  <h4><a href="/users/<%=user.id%>"><%=user.username%></a></h4>
+  </div>
 <%end%>
 
-
+<h5><a href = "/users/<%=current_user.id%>">your profile page</h5>
    
   

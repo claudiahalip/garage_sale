@@ -1,13 +1,15 @@
 
-<h2>ALL ITEMS FOR SALE</h2>
+<h1>ALL ITEMS FOR SALE</h1>
 <br>
 
 <%@items.each do |item|%>
-  <h3><a href= "/items/<%=item.id%>"><%=item.name%></a></h3>
+  <div class = "items_users">
+  <h4><a href= "/items/<%=item.id%>"><%=item.name%></a></h4>
+  </div>
   
 <%end%>
 <br>
 <br>
 
-<h4><a href = "/users/<%=current_user.id%>">your profile page</h4>
+<h5><a href = "/users/<%=current_user.id%>">your profile page</h5>
 

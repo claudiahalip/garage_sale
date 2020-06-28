@@ -1,6 +1,6 @@
 <h2>EDIT <%= @item.name%></h2>
 
-<%if @item.user == current_user %>
+
 <form action="/items/<%=@item.id%>" method="POST" >
    <input type="hidden" name="_method" value="PATCH">
    <h3>Item name: <input type="text" name="item[name]" value="<%=@item.name%>"></h3>
@@ -13,4 +13,3 @@
    <input type="submit" >
   
 </form>
-<%end%> 

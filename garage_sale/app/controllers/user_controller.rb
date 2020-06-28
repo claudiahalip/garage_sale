@@ -9,14 +9,11 @@ class UserController < ApplicationController
 
     post '/signup' do
       user = User.new(params[:user])
-    
       if user.save 
         session[:user_id]=user.id
         redirect "/users/#{user.id}"
       else
-        #add errors
         @errors = user.errors.full_messages.join(", ")
-      
         erb:'users/new'
       end 
     end
@@ -27,18 +24,17 @@ class UserController < ApplicationController
 
     post '/login' do
       user = User.find_by_username(params[:user][:username])
-   
       if user && user.authenticate(params[:user][:password])
         session[:user_id] = user.id
         redirect "/users/#{user.id}"
       else
-        redirect '/'
+        flash[:message] = "You have to type in username AND password in order to login"
+        erb :'users/login'
       end 
     end
 
 
     get '/logout' do
-      "logout"
       session.clear
       redirect '/'
     end
@@ -48,33 +44,39 @@ class UserController < ApplicationController
       erb :'users/index'
     end 
     
-    get '/users/:id' do  #show 1 user
+    get '/users/:id' do  
       @user = User.find_by_id(params[:id])
       erb :'users/show'
     end 
 
     get '/users/:id/edit' do 
       if !logged_in?
+        #flash[:message] = "You have to login!"
         redirect "/login"
       end
       @user = current_user
       erb :'users/edit' 
     end 
 
-    patch '/users/:id' do  #update 1 user
+    patch '/users/:id' do 
       user = User.find(params[:id])
-      if !logged_in?
+      if logged_in?
         user.update(username: params[:user][:username])
-        redirect "/users/#{user.id}"
+      else
+        flash[:message] = "Not yours to edit!!!"
       end
+      redirect "/users/#{user.id}" 
     end 
+    
  
-    delete '/users/:id' do  #delete 1 user
+    delete '/users/:id' do 
       user = User.find(params[:id])
-      if !logged_in?
+      if logged_in? && current_user == user
         user.destroy
-        redirect '/'
-      end 
+      else
+        flash[:message] = "Not yours to delete!!!" 
+      end
+      redirect '/'
     end 
 
 

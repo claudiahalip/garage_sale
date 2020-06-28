@@ -1,25 +1,27 @@
-<h6>SHOW</h6>
-<br>
-
 
 <h2>Item details</h2>
 
-<h2> <%=@item.name %></h2>
-<h3>size:<%=@item.size%></h3>
-<h3>brand:<%=@item.brand%></h3>
-<h3>color:<%=@item.color%></h3>
-<h3>condition:<%=@item.condition%></h3>
-<h3>description:<%=@item.description%></h3>
-<h3>price:<%=@item.price%></h3>
+<h2><%= @item.name %></h2>
+<h3>size:<%= @item.size%></h3>
+<h3>brand:<%= @item.brand%></h3>
+<h3>color:<%= @item.color%></h3>
+<h3>condition:<%= @item.condition%></h3>
+<h3>description:<%= @item.description%></h3>
+<h3>price:<%= @item.price%></h3>
+<br>
+<br>
 
+<%if @item.user == current_user%>
+<form action="/items/<%=@item.id%>" method="POST" >
+   <input type="hidden" value="DELETE"  name="_method">
+   <input type="submit" value="delete">
+</form>
 
-
-<%if @item.user == current_user %>
-   <form action="/items/<%=@item.id%>" method="POST" >
-      <input type="hidden" value="DELETE"  name="_method">
-      <input type="submit" value="delete">
-   </form>
+<h5><a href = "/items/<%=@item.id%>/edit">Edit this item</h5>
 <%end%>
 
-<h4><a href = "/users/<%=current_user.id%>">back to your profile page</a></h4>
-<h4><a href = "/items">back to ALL items</a></h4>
+<br>
+<br>
+
+<h5><a href = "/users/<%=current_user.id%>">back to your profile page</a></h5>
+<h5><a href = "/items">back to ALL items</a></h5>

@@ -1,28 +1,28 @@
 
-
-
 <%if @user == current_user%>
-    <form action="/users/<%=@user.id%>" method="POST" >
-    <input type="hidden" value="DELETE"  name="_method">
-    <input type="submit" value="delete">
-    </form>
+<form action="/users/<%=@user.id%>" method="POST" >
+  <input type="hidden" value="DELETE"  name="_method">
+  <input type="submit" value="delete">
+</form>
+
+<h5><a href = "/users/<%=@user.id%>/edit">Edit</h5>
 <%end%>
+<br>
+<br>
 
+<h3><%=@user.username%>' items </h3>
 
-
-<h2> All your items </h2>
-<h4><%=@user.username%>'profile</h4>
-<%@user.items.each do |user_item|%>
-    <h3><%=user_item.name%></h3><h6><a href= "/items/<%=user_item.id%>">item details</a></h6>
-    
+<%if !@user.items.empty?%>
+  <%@user.items.each do |user_item|%>
+    <h4><%=user_item.name%></h3><h6><a href= "/items/<%=user_item.id%>">item details</a></h4>
+  <%end%>
+<%else%>
+  <h3>No items in this account</h3>
 <%end%>
-
+   
 <br>
 <br>
 <br>
-
-
-
 <h4><a href="/items/new">add an item</a><h4>
 <br>
 <h4><a href="/users">see all users</a></h4>

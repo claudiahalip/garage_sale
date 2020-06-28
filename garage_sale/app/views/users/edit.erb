@@ -1,11 +1,10 @@
 <h2>EDIT</h2>
 
-<%if @user == current_user %>
 <form action ="/users/<%=@user.id%>" method="POST" >
    <input type="hidden" name="_method" value="PATCH">
    <h3>Username:<input type="text" name = "user[username]" value= "<%=@user.username%>"></h3>
    <h3>Email:<input type="text" name = "user[email]" value= "<%=@user.email%>"></h3>
-   <input type="submit">
+   <input type="submit" >
   
 </form>
-<%end %>
+
