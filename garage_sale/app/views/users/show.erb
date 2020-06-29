@@ -1,3 +1,9 @@
+<%if logged_in?%>
+  <h5><a href = "/logout"><b>Logout</b></a></h5>
+<%else%>
+  <h5><a href="/login">Login</a></h5>
+<%end %>
+
 
 <%if @user == current_user%>
 <form action="/users/<%=@user.id%>" method="POST" >
@@ -27,7 +33,6 @@
 <br>
 <h4><a href="/users">see all users</a></h4>
 <h4><a href="/items">see all items</a></h4>
-
 
 
 

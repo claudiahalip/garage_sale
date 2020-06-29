@@ -1,3 +1,9 @@
+<%if logged_in?%>
+  <h5><a href = "/logout"><b>Logout</b></a></h5>
+<%else%>
+  <h5><a href="/login">Login</a></h5>
+<%end %>
+
 
 <h1>ALL ITEMS FOR SALE</h1>
 <br>
@@ -10,6 +16,7 @@
 <%end%>
 <br>
 <br>
+<h5><a href = "/users/<%=current_user.id%>">back to your profile page</a></h5>
 
 
 

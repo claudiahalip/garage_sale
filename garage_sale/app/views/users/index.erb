@@ -1,3 +1,9 @@
+<%if logged_in?%>
+  <h5><a href = "/logout"><b>Logout</b></a></h5>
+<%else%>
+  <h5><a href="/login">Login</a></h5>
+<%end %>
+
 <header>
 <img src="images/THEH0349.jpg" class="img-responsive main-image">
 </header>
@@ -9,7 +15,10 @@
   <h4><a href="/users/<%=user.id%>"><%=user.username%></a></h4>
   </div>
 <%end%>
+<br>
+<br>
 
+<h5><a href = "/users/<%=current_user.id%>">back to your profile page</a></h5>
 
    
   
