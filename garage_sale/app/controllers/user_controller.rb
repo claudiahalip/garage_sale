@@ -73,10 +73,12 @@ class UserController < ApplicationController
       user = User.find(params[:id])
       if logged_in? && current_user == user
         user.destroy
-      else
-        flash[:message] = "Not yours to delete!!!" 
+        redirect '/'
+      # else
+      #   flash[:message] = "Not yours to delete!!!" 
+      #   redirect '/'
       end
-      redirect '/'
+     
     end 
 
 
