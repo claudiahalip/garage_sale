@@ -5,23 +5,30 @@
 <%end %>
 
 
-<%if @user == current_user%>
-<form action="/users/<%=@user.id%>" method="POST" >
-  <input type="hidden" value="DELETE"  name="_method">
-  <input type="submit" value="delete">
-</form>
+<%if  @user && @user == current_user%>
+  <form action="/users/<%=@user.id%>" method="POST" >
+    <input type="hidden" value="DELETE"  name="_method">
+    <input type="submit" value="delete">
+  </form>
 
-<h5><a href = "/users/<%=@user.id%>/edit">Edit</h5>
+  <h5><a href = "/users/<%=@user.id%>/edit">Edit</h5>
+<%else%>
+  
 <%end%>
 <br>
 <br>
+<%if @user%>
+  <h3><%=@user.username%>' items </h3>
+<%end%>
 
-<h3><%=@user.username%>' items </h3>
 
-<%if !@user.items.empty?%>
+
+<%if @user && !@user.items.empty?%>
   <%@user.items.each do |user_item|%>
     <h4><%=user_item.name%></h3><h6><a href= "/items/<%=user_item.id%>">item details</a></h4>
   <%end%>
+<%elsif !@user%> 
+    <h3>This user doesn't exist!</h3>
 <%else%>
   <h3>No items in this account</h3>
 <%end%>

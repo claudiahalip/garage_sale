@@ -43,7 +43,7 @@ class ItemController < ApplicationController
         @item.update(params[:item])
         redirect "/items/#{@item.id}"
       else
-        flash[:message] = "Not yours to edit this item"
+        flash[:message] = "Not yours to edit!!!"
         redirect '/items'
       end 
     end 
@@ -54,7 +54,7 @@ class ItemController < ApplicationController
         item.destroy
         redirect "/users/#{current_user.id}"
       else
-        flash[:message] = "Not yours to edit this item"
+        flash[:message] = "Not yours to edit!!!"
         redirect "/items"
       end
     end 

@@ -3,8 +3,11 @@ require './config/environment'
 class UserController < ApplicationController
 
     get '/signup' do
-      "sign up"
-      erb :'users/new'
+      if logged_in?
+        redirect "/users/#{current_user.id}"
+      else
+        erb :'users/new'
+      end 
     end
 
     post '/signup' do
@@ -19,7 +22,11 @@ class UserController < ApplicationController
     end
     
     get '/login' do 
-      erb :'users/login'
+      if logged_in?
+        redirect "/users/#{current_user.id}"
+      else
+        erb :'users/login'
+      end 
     end 
 
     post '/login' do
@@ -35,8 +42,12 @@ class UserController < ApplicationController
 
 
     get '/logout' do
-      session.clear
-      redirect '/'
+      if logged_in?
+        session.clear
+        redirect '/'
+      else
+        redirect '/login'
+      end 
     end
     
     get '/users' do
@@ -51,7 +62,7 @@ class UserController < ApplicationController
 
     get '/users/:id/edit' do 
       if !logged_in?
-        #flash[:message] = "You have to login!"
+        flash[:message] = "You have to login!"
         redirect "/login"
       end
       @user = current_user
@@ -60,23 +71,26 @@ class UserController < ApplicationController
 
     patch '/users/:id' do 
       user = User.find(params[:id])
-      if logged_in?
+      if logged_in?  && user == current_user
         user.update(username: params[:user][:username])
+        redirect "/users/#{user.id}"
       else
         flash[:message] = "Not yours to edit!!!"
+        redirect "/users"
       end
-      redirect "/users/#{user.id}" 
+       
     end 
     
  
     delete '/users/:id' do 
       user = User.find(params[:id])
       if logged_in? && current_user == user
+        session.clear
         user.destroy
         redirect '/'
-      # else
-      #   flash[:message] = "Not yours to delete!!!" 
-      #   redirect '/'
+      else
+        flash[:message] = "Not yours to delete!!!" 
+        redirect '/login'
       end
      
     end 

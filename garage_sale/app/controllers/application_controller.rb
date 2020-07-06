@@ -15,8 +15,11 @@ class ApplicationController < Sinatra::Base
   not_found do
    status 404
    erb :errors
+  end
+   
+  error ActiveRecord::RecordNotFound do 
+    redirect '/'
   end 
-
 
   get "/" do
     erb :welcome
