@@ -1,7 +1,8 @@
 class ItemController < ApplicationController
 
     get '/items' do     
-      @items = Item.all
+      @items = Item.sort_alfa
+      
       erb :'items/index'
     end 
     
