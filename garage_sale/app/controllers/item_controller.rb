@@ -54,7 +54,7 @@ class ItemController < ApplicationController
         item.destroy
         redirect "/users/#{current_user.id}"
       else
-        flash[:message] = "Not yours to edit!!!"
+        flash[:message] = "Not yours to delete!!!"
         redirect "/items"
       end
     end 

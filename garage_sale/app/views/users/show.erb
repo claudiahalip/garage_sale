@@ -18,7 +18,7 @@
 <br>
 <br>
 <%if @user%>
-  <h3><%=@user.username%>' items </h3>
+  <h3><%=@user.username%>'s items </h3>
 <%end%>
 
 
@@ -36,7 +36,10 @@
 <br>
 <br>
 <br>
+<%if  @user && @user == current_user%>
 <h4><a href="/items/new">add an item</a><h4>
+<%end%>
+
 <br>
 <h4><a href="/users">see all users</a></h4>
 <h4><a href="/items">see all items</a></h4>

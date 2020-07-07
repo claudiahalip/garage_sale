@@ -15,6 +15,7 @@
    <h3>condition:<%= @item.condition%></h3>
    <h3>description:<%= @item.description%></h3>
    <h3>price:<%= @item.price%></h3>
+   
    <br>
    <br>
 <%end%>
@@ -26,7 +27,7 @@
    </form>
 
    <h5><a href = "/items/<%=@item.id%>/edit">Edit this item</h5>
-<%else%>
+<%elsif !@item %> 
    <h3>This item doesn't exist!</h3>
 <%end%>
 
